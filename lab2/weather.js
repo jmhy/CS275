@@ -13,10 +13,18 @@ function geolocate(){
 		dataType: "jsonp",
 		success: function(msg){
 			//Display zipcode on page
-			var zip = msg.location.zip;
-			document.getElementById("out_zip").innerHTML = "Your detected zip code: " + zip;
-			//Get weather data of zipcode obtained above
-			get_weather(key, zip);
+			try{
+				var zip = msg.location.zip;
+				document.getElementById("out_zip").innerHTML = "Your detected zip code: " + zip;
+				//Get weather data of zipcode obtained above
+				get_weather(key, zip);
+			}
+			catch(err){ //Handle errors that may come from bad input or key
+				document.getElementById("out_zip").innerHTML = "Error obtaining weather data!";
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError){
+			document.getElementById("out_zip").innerHTML = "Error obtaining weather data!";
 		}
 	});
 }
@@ -43,12 +51,16 @@ function get_weather(key, zip){
 			}
 			//Modify the page to display the data
 			document.getElementById("out_weather").innerHTML = out_html;
+		},
+		error: function(xhr, ajaxOptions, thrownError){
+			document.getElementById("out_weather").innerHTML = "Error obtaining weather data!";
 		}
 	});
 }
 
-//Clear zip and weather from webpage
+//Clear input box and displayed zip and weather from webpage
 function cleardata(){
+	document.getElementById("in_textbox").value = "";
 	document.getElementById("out_zip").innerHTML = "<br/>";
 	document.getElementById("out_weather").innerHTML = "";
 }
