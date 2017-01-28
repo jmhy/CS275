@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab 2 - Weather Underground API</title>
+</head>
+<body>
+<!-- Styled to keep page compact -->
+<style>
+body { margin: 0 }
+img { float: left }
+</style>
+<script type="text/JavaScript" src="weather.js"></script>
+<script type="text/JavaScript" src="jquery-3.1.1.min.js"></script>
+<h1>Weather Underground API</h1>
+<form>
+	API key:
+	<br>
+	<input type="text" id="in_textbox" style="display: block; float: left;">
+	<input type="button" onclick="geolocate()" value="Submit" style="display: block; float: left;">
+	<input type="button" onclick="cleardata()" value="Clear" style="display: block; float: left;">
+	<br>
+</form>
+<!-- JavaScript will output geolocated zip below -->
+<div id="out_zip"><br/></div>
+<h2>Hourly Forecast:</h2>
+<!-- JavaScript will output weather below -->
+<div id="out_weather"></div>
+</body>
+</html>
