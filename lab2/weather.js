@@ -8,7 +8,7 @@ function geolocate(){
 	$.ajax({
 		type: "GET",
 		url: URL,
-		contentType: "application/json; charst=utf-8",
+		contentType: "application/json; charset=utf-8",
 		data: "{}",
 		dataType: "jsonp",
 		success: function(msg){
@@ -37,7 +37,7 @@ function get_weather(key, zip){
 	$.ajax({
 		type: "GET",
 		url: URL,
-		contentType: "application/json; charst=utf-8",
+		contentType: "application/json; charset=utf-8",
 		data: "{}",
 		dataType: "jsonp",
 		success: function(msg){
