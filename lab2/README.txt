@@ -1,4 +1,4 @@
-# Lab 1 - Joseph Haggerty
+# Lab 2 - Joseph Haggerty
 
 ## Introduction
 
