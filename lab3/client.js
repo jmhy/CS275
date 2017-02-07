@@ -6,8 +6,7 @@ function run_client(){
 	var opt = dropdown.options[dropdown.selectedIndex].value;
 	//Seed and option will be sent to server in json
 	var jsonObj = {
-		"seed":seed,
-		"calc":opt
+		"seed":seed
 	};
 	//Create URL based on option chosen
 	var URL = "http://localhost:8080/";	
@@ -22,14 +21,13 @@ function run_client(){
 	$.ajax({
 		type: "GET",
 		url: URL,
-		contentType: "application/json; charset=utf-8",
 		data: jsonObj,
 		dataType: "html",
 		success: function(msg){
-			
+			$("#out").html(msg);
 		},
 		error: function(xhr, ajaxOptions, thrownError){
-			
+			$("#out").html("error");
 		}
 	});
 }
