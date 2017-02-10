@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab 3</title>
+</head>
+<body>
+<style>
+</style>
+<script type="text/JavaScript" src="client.js"></script>
+<script type="text/JavaScript" src="jquery-3.1.1.min.js"></script>
+<h1>Lab 3 - Node.js Web Service</h1>
+<p>Please enter a seed (positive integer), then select the type of calculation from the drop-down:</p>
+<input type="text" id="seed_input" placeholder="Seed">
+<select id="calc_opts">
+	<option value="fact">Factorial</option>
+	<option value="sum">Summation</option>
+</select>
+<input type="button" onclick="run_client()" value="Submit">
+<br/>
+<p>Calculation output will appear below:</p>
+<div id="out"></div>
+</body>
+</html>
