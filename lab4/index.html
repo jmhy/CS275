@@ -7,8 +7,9 @@
 <style>
 .banner {
 	background-color: #07294d;
+	display: inline-flex;
 	position: fixed;
-	top: 0px;
+	top: 0;
 	height: 120px;
 	width: 100%;
 	z-index: 10;
@@ -21,16 +22,17 @@
 	color: #fff;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 45px;
+	margin: auto 10px;
 	text-transform: uppercase;
 }
-body, p {
-	margin: 0px;
+body {
+	margin: 0;
 }
 .content {
 	padding: 20px;
 	position: absolute;
 	top: 120px;
-	bottom: 0px;
+	bottom: 0;
 	left: 20%;
 }
 .sidenav {
@@ -49,57 +51,65 @@ body, p {
 	text-transform: uppercase;
 }
 </style>
-<script type="text/JavaScript" src="client.js"></script>
 <script type="text/JavaScript" src="jquery-3.1.1.min.js"></script>
+<script type="text/JavaScript" src="client.js"></script>
+<!-- Display a banner fixed to top of page -->
 <div class="banner">
 	<img src="banner.png" class="banner_img">
 	<div class="banner_text">
-	<p>CS 275 - Lab 4</p>
-	<p>Joseph Haggerty</p>
+		<p style="margin: 0">CS 275 - Lab 4</p>
+		<p style="margin: 0">Winter 2017</p>
 	</div>
 </div>
+<!-- Display left-side navigation links-->
 <div class="sidenav">
-	<nav style="padding: 15px;">
-		<a class="nav_link">Home</a>
+	<nav style="padding: 15px">
+		<a class="nav_link" href=".">Home</a>
 		<br>
-		<a class="nav_link">Calculation</a>
+		<a class="nav_link" onclick="get_calc()" href="#">Calculation</a>
 		<br>
-		<a class="nav_link">Weather</a>
+		<a class="nav_link" href="">Weather</a>
 	</nav>
 </div>
-<div class="content">
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
+<!-- Dynamic content area -->
+<div class="content" id="content">
+	<h2 style="margin-top: 0">Welcome to Lab 4 of CS 275!</h2>
+	<p>The purpose of this lab is three-fold:</p>
+	<ol>
+		<li>Allowing for multiple pages with a mixture of static and dynamically generated content.</li>
+		<li>Beginning to apply good software design principles by segmenting logic into their own modules.</li>
+		<li>Getting experience from playing with Node.js emitters.</li>
+	</ol>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
+	<p>Test</p>
 </div>
 </body>
 </html>
