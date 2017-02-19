@@ -4,7 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 var utils = require('util');
 
 //get the api key from the keyfile in the parent directory
-var key = fs.readFileSync('./key.txt','utf8');
+var key = fs.readFileSync('../key.txt','utf8');
 
 function Weather(){
 	EventEmitter.call(this);
