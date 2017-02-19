@@ -1,5 +1,5 @@
 //Gets and displays Calculation prompts on main page
-function get_calc(){
+function displayCalc(){
 	//Create URL to calculation page
 	var URL = "http://localhost:8080/calc";	
 	
@@ -19,7 +19,7 @@ function get_calc(){
 }
 
 //Gets and displays factorial or summation result to calculation page
-function run_calc(){
+function getCalc(){
 	//Get seed and calculation method specified by client
 	var seed = $("#seed_input").get(0).value;
 	var dropdown = $("#calc_opts").get(0);
@@ -45,6 +45,46 @@ function run_calc(){
 		dataType: "html",
 		success: function(msg){
 			$("#out_calc").html(msg);
+		},
+		error: function(xhr, ajaxOptions, thrownError){
+			alert("Error contacting server!");
+		}
+	});
+}
+
+//Gets and displays weather prompt on main page
+function displayWeather(){
+	//Create URL to weather page
+	var URL = "http://localhost:8080/weather";	
+	
+	//Construct AJAX request to localhost
+	$.ajax({
+		type: "GET",
+		url: URL,
+		data: "{}",
+		dataType: "html",
+		success: function(msg){
+			$("#content").html(msg);
+		},
+		error: function(xhr, ajaxOptions, thrownError){
+			alert("Error contacting server!");
+		}
+	});
+}
+
+//Gets and displays weather data on the weather page
+function getWeather(){
+	//Create URL to getWeather page
+	var URL = "http://localhost:8080/getWeather";	
+	
+	//Construct AJAX request to localhost
+	$.ajax({
+		type: "GET",
+		url: URL,
+		data: "{}",
+		dataType: "html",
+		success: function(msg){
+			$("#out_weather").html(msg);
 		},
 		error: function(xhr, ajaxOptions, thrownError){
 			alert("Error contacting server!");

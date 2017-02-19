@@ -35,6 +35,9 @@ body {
 	bottom: 0;
 	left: 20%;
 }
+.content img {
+	float: left;
+}
 .sidenav {
 	background-color: #FFC600;
 	position: fixed;
@@ -66,9 +69,9 @@ body {
 	<nav style="padding: 15px">
 		<a class="nav_link" href=".">Home</a>
 		<br>
-		<a class="nav_link" onclick="get_calc()" href="#">Calculation</a>
+		<a class="nav_link" onclick="displayCalc()" href="#">Calculation</a>
 		<br>
-		<a class="nav_link" href="">Weather</a>
+		<a class="nav_link" onclick="displayWeather()" href="#">Weather</a>
 	</nav>
 </div>
 <!-- Dynamic content area -->

@@ -3,9 +3,13 @@ var express = require('express');
 var http = require('http');
 var app = express();
 
-//import a calculator module
+//import the calculator module
 var calc = require('./calculator');
 var c = new calc();
+
+//import the weather module
+var WeatherController = require('./weather');
+var wc = new WeatherController();
 
 //refer to local dir, change if moving this script to another dir
 app.use(express.static("."));
@@ -58,6 +62,22 @@ app.get('/sum', function (req,res){
 		console.log("Sending summation result: " + result + "\n");
 		res.send("The summation of " + seed + " is " + result);
 	}
+})
+
+app.get('/weather', function (req,res){
+	var html_str = wc.render();
+	console.log("Rendering weather page");
+	res.send(html_str);
+})
+
+app.get('/getWeather', function (req,res){
+	wc.once('zipEvent', function(zip){
+		wc.once('forecastEvent', function(msg){
+			res.send(msg);
+		});
+		wc.getWeather(zip);
+	});
+	wc.getZip();
 })
 
 //Any other URL request will redirect to the main --and only-- page

@@ -9,10 +9,10 @@ Calc.prototype.render = function(){
 		<option value="fact">Factorial</option>
 		<option value="sum">Summation</option>
 		</select>
-		<input type="button" onclick="run_calc()" value="Submit">
+		<input type="button" onclick="getCalc()" value="Submit">
 		<br/>
 		<p>Calculation output will appear below:</p>
-		<div id="out_calc"></div>`
+		<div id="out_calc"></div>`;
 	return html_str;
 }
 
