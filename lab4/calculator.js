@@ -1,8 +1,10 @@
 function Calc(){}
 
-//returns html string for displaying on the main page's content area
+//returns html string for displaying calculation on the main page's content area
 Calc.prototype.render = function(){
 	var html_str = `
+		<h2 style="margin-top: 0">Calculation Service</h2>
+		<p>This page will allow you to get either the factorial or summation of a positive integer seed. For example, if the given seed is 5, the factorial is 1*2*3*4*5 = 120 and the summation is 1+2+3+4+5 = 15. An appropriate error message is displayed when no input or bad input is supplied.</p>
 		<p>Please enter a seed (positive integer), then select the type of calculation from the drop-down:</p>
 		<input type="text" id="seed_input" placeholder="Seed">
 		<select id="calc_opts">

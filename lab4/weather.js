@@ -3,6 +3,7 @@ var http = require('http');
 var EventEmitter = require('events').EventEmitter;
 var utils = require('util');
 
+//get the api key from the keyfile in the parent directory
 var key = fs.readFileSync('./key.txt','utf8');
 
 function Weather(){
@@ -11,6 +12,7 @@ function Weather(){
 
 utils.inherits(Weather,EventEmitter);
 
+//returns html string for displaying weather prompt on the main page's content area
 Weather.prototype.render = function(){
 	var html_str = `
 		<form>
@@ -33,6 +35,7 @@ Weather.prototype.getZip = function(){
 	};
 	var self = this;
 	console.log("Requesting geolocated zipcode from " + options.host);
+	//send http request to wunderground
 	http.request(options, function(response){
 		var str = '';
 		var html = '';
@@ -55,6 +58,7 @@ Weather.prototype.getWeather = function(zip){
 	};
 	var self = this;
 	console.log("Requesting hourly forecast from " + options.host);
+	//send http request to wunderground
 	http.request(options, function(response){
 		var str = '';
 		var html = '<h2>Hourly Forecast for ZIP code ' + zip + ':</h2>';
