@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab 5</title>
+</head>
+<body>
+<style>
+.banner {
+	background-color: #07294d;
+	display: inline-flex;
+	position: fixed;
+	top: 0;
+	height: 120px;
+	width: 100%;
+	z-index: 10;
+}
+.banner_img {
+	float: left;
+	padding: 10px;
+}
+.banner_text {
+	color: #fff;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 45px;
+	margin: auto 10px;
+	text-transform: uppercase;
+}
+body {
+	margin: 0;
+}
+.content {
+	padding: 20px;
+	position: absolute;
+	top: 120px;
+	bottom: 0;
+	left: 20%;
+}
+.content img {
+	float: left;
+}
+.sidenav {
+	background-color: #FFC600;
+	position: fixed;
+	text-align: center;
+	top: 120px;
+	height: 100%;
+	width: 20%;
+}
+.nav_link {
+	display: block;
+	background: #07294d;
+    color: #fff;
+	font: bold 16px/2 arial,helvetica,sans-serif;
+	text-transform: uppercase;
+}
+</style>
+<script type="text/JavaScript" src="jquery-3.1.1.min.js"></script>
+<script type="text/JavaScript" src="client.js"></script>
+<!-- Display a banner fixed to top of page -->
+<div class="banner">
+	<img src="banner.png" class="banner_img">
+	<div class="banner_text">
+		<p style="margin: 0">CS 275 - Lab 5</p>
+		<p style="margin: 0">Winter 2016-17</p>
+	</div>
+</div>
+<!-- Display left-side navigation links-->
+<div class="sidenav">
+	<nav style="padding: 15px">
+		<a class="nav_link" href=".">Home</a>
+		<br>
+		<a class="nav_link" onclick="displayTablesPage()" href="#">Database Tables</a>
+		<br>
+		<a class="nav_link" onclick="displayTransPage()" href="#">Student Transcripts</a>
+		<br>
+		<a class="nav_link" onclick="displayStudentPage()" href="#">Add Student</a>
+	</nav>
+</div>
+<!-- Dynamic content area -->
+<div class="content" id="content">
+	<h2 style="margin-top: 0">Welcome to Lab 5 of CS 275!</h2>
+	<p>The purpose of this lab is three-fold:</p>
+	<ol>
+		<li>Getting experience with MySQL databases, including how to install/set up a database and creating/populating relational tables through the MySQL command line interface</li>
+		<li>Interfacing with a MySQL database through a Node.js server</li>
+		<li>Gaining more experience in designing an application/website</li>
+	</ol>
+	<p>This lab has the following dependencies:</p>
+	<ul>
+		<li>jQuery (3.1.1 or later)</li>
+		<li>MySQL Community Server</li>
+		<li>Node.js</li>
+		<li>npm modules:
+			<ul>
+				<li>body-parser</li>
+				<li>express</li>
+				<li>mysql</li>
+			</ul>
+		</li>
+	</ul>
+	<h2>Using This Page</h2>
+	<p>First, import the schema from the DumpLab5Schema.sql file into your database with the command:</p>
+	<p>"mysql -u &lt;username&gt; -p &lt; DumpLab5Schema.sql"</p>
+	<p>The main page, which is the file "index.html," should not be opened directly in a browser. Instead, open a command-line, such as Command Prompt, navigate to the directory containing server.js, and run the command "node server.js" without quotes. Next, open a browser and type the URL "localhost:8080" as the server is set to listen to port 8080. The server will then display this page and you can begin using the links in the navigation area to the left. Click "HOME" to return here anytime.</p>
+	<h3>Notes</h3>
+	<p>This page is set up so that the banner and navigation areas are fixed to the top and left, respectively. Since there is not much content to consume space, it might not be noticeable on larger monitors.</p>
+	<p>Webpage By: Joseph Haggerty</p>
+	<p>Drexel University, 3141 Chestnut Street, Philadelphia, PA 19104, 215.895.2000</p>
+</div>
+</body>
+</html>

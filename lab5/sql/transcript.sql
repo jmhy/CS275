@@ -1,0 +1,1 @@
+SELECT student.STUDENT_ID AS 'Student ID', NAME_FIRST AS 'First Name', NAME_LAST AS 'Last Name', TERM AS 'Term/Year', course.COURSE_ID AS 'Course ID', COURSE_DESC AS 'Description', GRADE AS 'Grade' FROM course, grades, student WHERE student.STUDENT_ID = grades.STUDENT_ID AND course.COURSE_ID = grades.COURSE_ID AND student.STUDENT_ID = 1;
