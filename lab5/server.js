@@ -2,6 +2,10 @@
 var express = require('express');
 var http = require('http');
 var app = express();
+//Use body parser for easier handling of post reqs
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 //refer to local dir, change if moving this script to another dir
 app.use(express.static('.'));
 
@@ -37,7 +41,8 @@ app.get('/tables', function (req,res){
 		<input type='button' onclick='getTable()' value='Display Table'>
 		<br>
 		<p>The selected table will appear below:</p>
-		<div id='out'></div>`;
+		<div id='out'></div>
+		<br>`;
 	console.log('Rendering table display page');
 	res.send(html_str);
 });
@@ -116,7 +121,8 @@ app.get('/transcripts', function (req,res){
 						<input type='button' onclick='getTranscript()' value='Display Transcript'>
 						<br>
 						<p>The transcript will appear below:</p>
-						<div id='out'></div>`;
+						<div id='out'></div>
+						<br>`;
 					console.log('Rendering transcript display page');
 					res.send(html_str);
 				}
@@ -168,6 +174,63 @@ app.get('/gettrans', function (req,res){
 			html_str += '</table>'
 			console.log('Sending transcript');
 			res.send(html_str);
+		}
+	});
+});
+
+//send html for new student display page
+app.get('/student', function (req,res){
+	var html_str = `
+		<h2 style='margin-top: 0'>Add Student to Database</h2>
+		<p>This page will allow you to add a new student to the database. To do so, type the student's first and last name into the respective fields below, choose year/month/day of birth and major from the respective drop-downs, then click "Add Student." All fields are required.</p>
+		<form id='studentForm' action='javascript:addStudent()'>
+			<fieldset style='display:inline'>
+				<legend>Student Information:</legend>
+				First Name:<br>
+				<input type='text' name='firstname' id='firstname' required><br>
+				Last Name:<br>
+				<input type='text' name='lastname' id='lastname' required><br>
+				Date of Birth:<br>
+				<input type='date' name='dob' id='dob' required><br>
+				Major:<br>
+				<select name='major' id='major' required>
+					<option value=''></option>
+					<option value='CE'>CE</option>
+					<option value='CS'>CS</option>
+					<option value='IS'>IS</option>
+					<option value='IT'>IT</option>
+				</select>
+				<br><br>
+				<input type="submit" value="Add Student">
+			</fieldset>
+		</form>
+		<p>Result of operation:</p>
+		<div id='out'></div>
+		<br>`;
+	console.log('Rendering table display page');
+	res.send(html_str);
+});
+
+//send html for new student display page
+app.post('/addstudent', function (req,res){
+	console.log('Processing Add Student request');
+	var first = req.body.firstname;
+	var last = req.body.lastname;
+	var dob = req.body.dob;
+	var major = req.body.major;
+	console.log('First: ' + first + ' Last: ' + last + ' DoB: ' + dob + ' Major: ' + major);
+	
+	var q_str = "INSERT INTO student(NAME_FIRST, NAME_LAST, BIRTH_DATE, MAJOR)VALUES('" + first + "','" + last + "','" + dob + "','" + major + "');";
+	
+	con.query(q_str, function(err,rows,fields){
+		if(err){
+			console.log('Error during add student query processing');
+			console.log(err);
+			res.send('Error during add student query processing');
+		}
+		else{
+			console.log('Added new student to database');
+			res.send('Student Added!');
 		}
 	});
 });
