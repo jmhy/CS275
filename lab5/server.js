@@ -1,6 +1,5 @@
 //Using express to simplify handling of different client reqs
 var express = require('express');
-var http = require('http');
 var app = express();
 //Use body parser for easier handling of post reqs
 var bodyParser = require('body-parser');

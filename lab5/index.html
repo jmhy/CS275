@@ -79,26 +79,31 @@ body {
 <!-- Dynamic content area -->
 <div class="content" id="content">
 	<h2 style="margin-top: 0">Welcome to Lab 5 of CS 275!</h2>
-<!--	<p>The purpose of this lab is three-fold:</p>
+	<p>The purpose of this lab is three-fold:</p>
 	<ol>
-		<li>Allowing for multiple pages with a mixture of static and dynamically generated content.</li>
-		<li>Beginning to apply good software design principles by segmenting logic into their own modules.</li>
-		<li>Getting experience from playing with Node.js emitters.</li>
+		<li>Getting experience with MySQL databases, including how to install/set up a database and creating/populating relational tables through the MySQL command line interface</li>
+		<li>Interfacing with a MySQL database through a Node.js server</li>
+		<li>Gaining more experience in designing an application/website</li>
 	</ol>
-	<p>This lab integrates content from both labs 2 and 3, which involved the following:</p>
+	<p>This lab has the following dependencies:</p>
 	<ul>
-		<li>Lab 2 -  Learn how to utilize jQuery and Ajax to develop a web page to invoke the Weather Wunderground web service and parse its JSON response</li>
-		<li>Lab 3 - Two-fold:
+		<li>jQuery (3.1.1 or later)</li>
+		<li>MySQL Community Server</li>
+		<li>Node.js</li>
+		<li>npm modules:
 			<ul>
-			<li>Set up and test a server side environment</li>
-			<li>Get acquainted with Node.js basics, including interactions between client and server along with the development of a simple dynamic web service</li>
+				<li>body-parser</li>
+				<li>express</li>
+				<li>mysql</li>
 			</ul>
 		</li>
-	</ul>-->
+	</ul>
 	<h2>Using This Page</h2>
+	<p>First, import the schema from the DumpLab5Schema.sql file into your database with the command:</p>
+	<p>"mysql -u &lt;username&gt; -p &lt; DumpLab5Schema.sql"</p>
 	<p>The main page, which is the file "index.html," should not be opened directly in a browser. Instead, open a command-line, such as Command Prompt, navigate to the directory containing server.js, and run the command "node server.js" without quotes. Next, open a browser and type the URL "localhost:8080" as the server is set to listen to port 8080. The server will then display this page and you can begin using the links in the navigation area to the left. Click "HOME" to return here anytime.</p>
 	<h3>Notes</h3>
-	<p>This page is set up so that the banner and navigation areas are fixed to the top and left, respectively. It might not be noticeable on larger monitors.</p>
+	<p>This page is set up so that the banner and navigation areas are fixed to the top and left, respectively. Since there is not much content to consume space, it might not be noticeable on larger monitors.</p>
 	<p>Webpage By: Joseph Haggerty</p>
 	<p>Drexel University, 3141 Chestnut Street, Philadelphia, PA 19104, 215.895.2000</p>
 </div>
