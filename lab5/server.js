@@ -183,15 +183,16 @@ app.get('/student', function (req,res){
 	var html_str = `
 		<h2 style='margin-top: 0'>Add Student to Database</h2>
 		<p>This page will allow you to add a new student to the database. To do so, type the student's first and last name into the respective fields below, choose year/month/day of birth and major from the respective drop-downs, then click "Add Student." All fields are required.</p>
+		<p>Additionally, the server will sanitize the client's input to prevent SQL injection. Also, it will check to see if the student already exists by referencing the name and date of birth. If a student already exists, they will not be added again unless deleted from the database.</p>
 		<form id='studentForm' action='javascript:addStudent()'>
 			<fieldset style='display:inline'>
 				<legend>Student Information:</legend>
 				First Name:<br>
-				<input type='text' name='firstname' id='firstname' required><br>
+				<input type='text' name='firstname' id='firstname' required><br><br>
 				Last Name:<br>
-				<input type='text' name='lastname' id='lastname' required><br>
+				<input type='text' name='lastname' id='lastname' required><br><br>
 				Date of Birth:<br>
-				<input type='date' name='dob' id='dob' required><br>
+				<input type='date' name='dob' id='dob' required><br><br>
 				Major:<br>
 				<select name='major' id='major' required>
 					<option value=''></option>
@@ -211,26 +212,42 @@ app.get('/student', function (req,res){
 	res.send(html_str);
 });
 
-//send html for new student display page
+//add new student into db based on supplied info from new student form
 app.post('/addstudent', function (req,res){
 	console.log('Processing Add Student request');
-	var first = req.body.firstname;
-	var last = req.body.lastname;
-	var dob = req.body.dob;
-	var major = req.body.major;
+	//get form data from posted html body and escape to prevent SQL injections
+	var first = con.escape(req.body.firstname);
+	var last = con.escape(req.body.lastname);
+	var dob = con.escape(req.body.dob);
+	var major = con.escape(req.body.major);
 	console.log('First: ' + first + ' Last: ' + last + ' DoB: ' + dob + ' Major: ' + major);
 	
-	var q_str = "INSERT INTO student(NAME_FIRST, NAME_LAST, BIRTH_DATE, MAJOR)VALUES('" + first + "','" + last + "','" + dob + "','" + major + "');";
-	
-	con.query(q_str, function(err,rows,fields){
+	//sql string to check if student already exists, based on name and DoB
+	var q_find_str = "SELECT NAME_FIRST, NAME_LAST, BIRTH_DATE, MAJOR FROM student WHERE NAME_FIRST = " + first + " AND NAME_LAST = " + last + " AND BIRTH_DATE = " + dob + ";";
+	con.query(q_find_str, function(err,rows,fields){
 		if(err){
-			console.log('Error during add student query processing');
+			console.log('Error during find student query processing');
 			console.log(err);
-			res.send('Error during add student query processing');
+			res.send('Error during find student query processing');
 		}
-		else{
-			console.log('Added new student to database');
-			res.send('Student Added!');
+		else if(rows.length>0){ //no error but student already exists, do not add again
+			console.log('Error: attempt to add existing student to DB');
+			res.send('Error: student already exists!');
+		}
+		else{ //add new student
+			//sql string to insert new student into db
+			var q_add_str = "INSERT INTO student(NAME_FIRST, NAME_LAST, BIRTH_DATE, MAJOR)VALUES(" + first + "," + last + "," + dob + "," + major + ");";
+			con.query(q_add_str, function(err,rows,fields){
+				if(err){
+					console.log('Error during add student query processing');
+					console.log(err);
+					res.send('Error during add student query processing');
+				}
+				else{
+					console.log('Added new student to database');
+					res.send('Student Added!');
+				}
+			});
 		}
 	});
 });

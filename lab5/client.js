@@ -112,6 +112,7 @@ function addStudent(){
 	$.ajax({
 		type: 'POST',
 		url: URL,
+		//pull data from html form for new student's info
 		data: $('#studentForm').serialize(),
 		success: function(msg){
 			$('#out').html(msg);
